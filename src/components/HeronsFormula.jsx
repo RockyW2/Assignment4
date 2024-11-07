@@ -7,10 +7,15 @@ function HeronsFormula() {
     const [c, setC] = useState(0);
     const [area, setArea] = useState("Press Calulate");
 
-    function heronsFormula(e){
+    function heronsFormula(e) {
         e.preventDefault();
-        const s = (sideA + sideB + sideC) / 2;
-        setArea(Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC)));
+        const s = (parseInt(a) + parseInt(b) + parseInt(c)) / 2;
+        setArea(Math.sqrt(s * (s - a) * (s - b) * (s - c)));
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(s);
+        console.log(area);
     }
 
     return (
