@@ -5,7 +5,10 @@ import AmbiguousCase from './components/AmbiguousCase.jsx'
 function App() {
   
     return (
-        <AmbiguousCase />
+        <> 
+            <HeronsFormula />
+            <AmbiguousCase />
+        </>
     )
 }
 
