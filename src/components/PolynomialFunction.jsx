@@ -2,22 +2,19 @@ import './PolynomialFunction.css';
 import { useState } from 'react';
 
 function PolynomialFunction() {
-    const [coeff, setCoeff] = useState("");
-    const [expo, setExp] = useState("");
-    const [xValue, setX] = useState(0);
-    const [result, setResult] = useState("Press Calculate");
-    const [polyFunc, setPolyFunc] = useState("");
+    const coefficients = document.getElementById("polynomial-coefficients").value.split(" ").map(Number);
+    const exponents = document.getElementById("polynomial-exponents").value.split(" ").map(Number);
+    const xValue = parseFloat(document.getElementById("polynomial-x-Value").value);
+    const [result, setResult] = useState ("Press Calculate");
 
-    function polynomialFunction(e){
-        e.preventDefault();
-        const coefficients = coeff.split(" ").map(Number);
-        const exponents = expo.split(" ").map(Number);
+    function polynomialFunction(){
     
         if (coefficients.length !== exponents.length) {
-            setPolyFunc("Please ensure coefficients and exponents have the same length.");
-            setResult("Please ensure coefficients and exponents have the same length.");
-        } else {
-            let polynomialStr = "";
+            alert("Please ensure coefficients and exponents have the same length.");
+            return;
+        }
+    
+        let polynomialStr = "";
         let yValue = 0;
     
         for (let i = 0; i < coefficients.length; i++) {
@@ -38,26 +35,23 @@ function PolynomialFunction() {
             }
         }
     
-        setPolyFunc(polynomialStr);
-        setResult(yValue);
-        }  
+        document.getElementById("polynomial-function").value = polynomialStr;
+        document.getElementById("polynomial-result").value = yValue;
     }
     return(
-        <form onSubmit={(e) => polynomialFunction(e)}> 
+        <form onSubmit={(e) => polynomialFunction(e)}>
             <h3 id="polynomial-title">Polynomial Function</h3>
             <label>Coefficients:</label>
-            <input type="text" id="polynomial-coefficients" onChange={(event) => { setCoeff(event.target.value) }} required/>
+            <input type="text" id="polynomial-coefficients"/>
             <label>Exponents:</label>
-            <input type="text" id="polynomial-exponents" onChange={(event) => { setExp(event.target.value) }} required/>
+            <input type="text" id="polynomial-exponents" name="exponents"/>
             <label>x-value:</label>
-            <input type="number" id="polynomial-x-Value"  onChange={(event) => { setX(event.target.value) }} required/>
+            <input type="number" id="polynomial-x-Value"/>
             <input type="submit" id="polynomial-calculate" value="Calculate"/>
             <label>Function:</label>
-            <input type="text" id="polynomial-function" value={polyFunc} readonly/>
+            <input type="text" id="polynomial-function" readonly/>
             <label>Result:</label>
-            <input type="text" id="polynomial-result" value={result} readonly/>
+            <input type="text" id="polynomial-result" readonly/>
         </form>
     )
 }
-
-export default PolynomialFunction;
