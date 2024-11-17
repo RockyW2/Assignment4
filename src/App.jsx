@@ -5,14 +5,13 @@ import NewtonsMethod from './components/NewtonsMethod.jsx';
 import PolynomialFunction from './components/PolynomialFunction.jsx';
 
 function App() {
-  
     return (
-        <> 
+        <div className='app-container'> 
             <HeronsFormula />
             <AmbiguousCase />
             <NewtonsMethod />
             <PolynomialFunction/>
-        </>
+        </div>
     )
 }
 
